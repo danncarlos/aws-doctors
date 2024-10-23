@@ -1,0 +1,25 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: r4gteam
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: doctors-serverless
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  obterAgenda:
+    handler: src/agenda/controllers/agendaController.obterAgendas
+    events:
+      - httpApi:
+          method: get
+          path: /agendas
+  agendarConsulta:
+    handler: src/agendamentos/controllers/agendamentoController.agendarConsulta
+    events:
+      - httpApi:
+          method: post
+          path: /agendamento
+
+plugins:
+  - serverless-offline
